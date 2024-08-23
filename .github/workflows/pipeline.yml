@@ -22,7 +22,7 @@ jobs:
       - name: Run e2e tests
         run: yarn test:e2e
       - name: Publish test results
-        uses: actions/upload-artifact@v3
+        uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
           name: junit-results
