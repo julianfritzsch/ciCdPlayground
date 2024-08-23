@@ -11,7 +11,7 @@ new App({
 		// What do you associate with the term 'CI/CD'?
 		associations: [
 			'Agile Development',
-			'Automatization'
+			'Automation'
 		],
 		// Which CI/CD tools do you use in your project?
 		tools: 'Jenkins',
