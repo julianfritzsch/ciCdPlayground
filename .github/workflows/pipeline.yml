@@ -1,0 +1,28 @@
+name: Install and Tests
+run-name: Install and Tests
+on: [push,workflow_dispatch]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+      - name: Install Yarn
+        run: npm install -g yarn
+      - name: Install Dependencies
+        run: yarn
+      - name: Run unit tests
+        run: yarn test
+      - name: Run e2e tests
+        run: |
+          yarn build
+          yarn test:e2e
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: |
+            reports/*.xml
+
