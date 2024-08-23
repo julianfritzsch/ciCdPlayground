@@ -1,0 +1,27 @@
+name: Install and Tests
+run-name: Install and Tests
+on: [push,workflow_dispatch]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # Specify the Node.js version you need
+      - name: Install Yarn
+        run: npm install -g yarn
+      - name: Install Dependencies
+        run: yarn install
+      - name: Run unit tests
+        run: yarn test
+      - name: Run e2e tests
+        run: yarn build
+        run: yarn test:e2e
+      - name: Publish test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: junit-results
+          path: reports/*.xml
