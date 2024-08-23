@@ -17,8 +17,9 @@ jobs:
         run: yarn install
       - name: Run unit tests
         run: yarn test
-      - name: Run e2e tests
+      - name: Build
         run: yarn build
+      - name: Run e2e tests
         run: yarn test:e2e
       - name: Publish test results
         uses: actions/upload-artifact@v3
